@@ -4,11 +4,4 @@ const nextConfig = {
   basePath: "",
 };
 
-
-module.exports = {
-  // Your existing config
-  output: 'export',
-  images: {
-    unoptimized: true,
-  },
-};
+module.exports = nextConfig;
