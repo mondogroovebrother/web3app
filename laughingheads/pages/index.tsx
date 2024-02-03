@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
 
+
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
@@ -16,7 +17,8 @@ const Home: NextPage = () => {
           <div>
           </div>
         </div>
-    </div>
+    </div> 
+
   );
 };
 

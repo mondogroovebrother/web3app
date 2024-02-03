@@ -51,6 +51,12 @@ export default function Navbar() {
                         <Link href="/myCards">
                             <p>My Cards</p>
                         </Link>
+                        <Link href="/staking">
+                            <p>Staking</p>
+                        </Link>
+                        <Link href="/unstaking">
+                            <p>UnStaking</p>
+                        </Link>
                         <button
                             onClick={disconnectWallet}
                         >Logout</button>
