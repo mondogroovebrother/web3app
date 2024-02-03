@@ -18,7 +18,7 @@ export default function Navbar() {
         <div className={styles.container}>
             <div className={styles.navbar}>
                 <Link href="/">
-                    <p>Creatures</p>
+                    <p>laughingHeads</p>
                 </Link>
                 <div className={styles.navLinks}>
                     <Link href="/shop">
@@ -39,7 +39,7 @@ export default function Navbar() {
                         <div
                             onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
                         >
-                            <img src={`https://avatars.dicebear.com/api/avataaars/1.svg`} alt="avatar" className={styles.avatar}/>
+                            <img src={`https://superspaces-prod.s3.eu-central-1.amazonaws.com/pfp/1481281/1688861476610.jpg`} alt="avatar" className={styles.avatar}/>
                         </div>
                     )}
                 </div>

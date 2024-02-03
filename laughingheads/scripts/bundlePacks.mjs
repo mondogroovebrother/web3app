@@ -6,8 +6,8 @@ dotenv.config();
 (async () => {
     const sdk = ThirdwebSDK.fromPrivateKey(process.env.PRIVATE_KEY, "mumbai");
 
-    const packAddress = "0xCf31dC000D76fbD1cc68760E577B17be7243dD34";
-    const cardAddress = "0xF810082B4FaC42d65156Da88D5212dfAA75D0117";
+    const packAddress = "0x1753F12911074EfdaCA8A8B64d91DC46177B0972";
+    const cardAddress = "0xDb0BAB07577a66bE8B84080bC0E2dAF9586127D8";
 
     const pack = sdk.getContract(packAddress, "pack");
 
