@@ -11,8 +11,8 @@ const Home: NextPage = () => {
             <p>Buy and open packs to collect laughingHeads. Collect common, rare, and ultra rare cards.</p>
             <button 
               className={styles.heroButton}
-              onClick={() => window.location.href = "/shop"}
-            >Shop Packs</button>
+              onClick={() => window.location.href = "/story"}
+            >Storytime</button>
           </div>
           <div>
           </div>

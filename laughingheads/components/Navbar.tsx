@@ -22,10 +22,13 @@ export default function Navbar() {
                 </Link>
                 <div className={styles.navLinks}>
                     <Link href="/shop">
-                        <p>Shop</p>
+                        <p>Shop Packs</p>
                     </Link>
                     <Link href="/marketplace">
-                        <p>Marketplace</p>
+                        <p>User Marketplace</p>
+                    </Link>
+                    <Link href="/blog">
+                        <p>Blog</p>
                     </Link>
                 </div>
                 <div>
