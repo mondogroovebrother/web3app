@@ -4,7 +4,6 @@ import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
     const address = useAddress();
-
     const stakingAddress = "0x55f69326524C26cE18A122B8fD96b23446Ba8aEE";
     const laughingheadAddress = "0xDb0BAB07577a66bE8B84080bC0E2dAF9586127D8";
 
@@ -21,7 +20,6 @@ const Home: NextPage = () => {
             await laughingheadsContract.setApprovalForAll(stakingAddress, true);
         }
 
-        // Assuming the second argument should be the quantity and it's always 1 for staking an individual NFT
         await stakingContract.call("stake", [nftID, 1]);
     }
 
@@ -30,11 +28,11 @@ const Home: NextPage = () => {
             <main className={styles.main}>
                 <h1>Stake your NFTs</h1>
                 <p>Stake your laughingHeads to earn Kek</p>
-                <br />
-                <h1>My LaughingHeads</h1>
                 <div className={styles.grid}>
                     {myLHNFTs?.map((nft) => (
-                        <div key={nft.id} className={styles.nftCard}>
+                        // Assuming nft.metadata.id is the correct path to the NFT's ID
+                        // Use optional chaining if id might not be present, and provide a fallback key if necessary
+                        <div key={nft.metadata.id.toString()} className={styles.nftCard}>
                             <h3>{nft.metadata.name}</h3>
                             <ThirdwebNftMedia
                                 metadata={nft.metadata}
@@ -43,7 +41,7 @@ const Home: NextPage = () => {
                             />
                             <Web3Button
                                 contractAddress={stakingAddress}
-                                action={() => stakeNFT(nft.metadata.id)}
+                                action={() => stakeNFT(nft.metadata.id.toString())}
                             >
                                 Stake LaughingHead
                             </Web3Button>

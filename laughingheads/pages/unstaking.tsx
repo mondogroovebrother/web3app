@@ -1,37 +1,28 @@
 import { useContract, useAddress, useContractRead, Web3Button } from "@thirdweb-dev/react";
 import type { NextPage } from "next";
 import styles from "../styles/Home.module.css";
-import NFTCard from "../components/NFTCard"; // Corrected import path
+import NFTCard from "../components/NFTCard"; // Assuming this path is correct
 import { useEffect, useState } from "react";
 import { BigNumber, ethers } from "ethers";
 
 const Home: NextPage = () => {
   const address = useAddress();
-
   const stakingAddress = "0x55f69326524C26cE18A122B8fD96b23446Ba8aEE";
   const laughingheadAddress = "0xDb0BAB07577a66bE8B84080bC0E2dAF9586127D8";
-
-  const { contract: laughingheadsContract } = useContract(laughingheadAddress, "edition");
   const { contract: stakingContract } = useContract(stakingAddress);
-
   const { data: stakedInfo, refetch: refetchStakedNFTs } = useContractRead(stakingContract, "getStakeInfo", [address]);
-
   const [claimableRewards, setClaimableRewards] = useState<BigNumber>();
 
   useEffect(() => {
     const loadClaimableRewards = async () => {
       if (!stakingContract || !address) return;
-
       const stakeInfo = await stakingContract.call("getStakeInfo", [address]);
       if (stakeInfo && stakeInfo.length > 2) {
-        // Assuming the total rewards are returned as the third element in the array
         setClaimableRewards(stakeInfo[2]);
       } else {
         console.error('Stake info returned unexpected data:', stakeInfo);
-        // Handle the error appropriately
       }
     };
-
     loadClaimableRewards();
   }, [address, stakingContract]);
 
@@ -40,10 +31,9 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <h1>Unstake Your NFTs</h1>
         <div className={styles.grid}>
-          {stakedInfo && stakedInfo[0] && stakedInfo[0].map((tokenId, index) => (
+          {stakedInfo && stakedInfo[0] && stakedInfo[0].map((tokenId: BigNumber, index: number) => (
             <div key={index}>
-              {/* Ensure NFTCard can handle the tokenId properly */}
-              <NFTCard tokenID={tokenId.toNumber()} contract={laughingheadsContract} refetchStakedNFTs={refetchStakedNFTs} />
+              <NFTCard tokenID={tokenId.toNumber()} />
             </div>
           ))}
         </div>
