@@ -1,13 +1,21 @@
-import { ConnectWallet, useAddress, useDisconnect } from "@thirdweb-dev/react";
+import { ConnectWallet, useAddress, useDisconnect, useSwitchChain, useNetworkMismatch, ChainId } from "@thirdweb-dev/react";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
     const address = useAddress();
     const disconnect = useDisconnect();
+    const switchChain = useSwitchChain();
+    const isWrongNetwork = useNetworkMismatch();
 
     const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+
+    useEffect(() => {
+        if (isWrongNetwork && switchChain) {
+            switchChain(ChainId.Mumbai);
+        }
+    }, [address, isWrongNetwork, switchChain]);
 
     function disconnectWallet() {
         disconnect();
@@ -18,7 +26,7 @@ export default function Navbar() {
         <div className={styles.container}>
             <div className={styles.navbar}>
                 <Link href="/">
-                    <p>laughingHeads</p>
+                    <p>Home</p>
                 </Link>
                 <div className={styles.navLinks}>
                     <Link href="/shop">
@@ -27,8 +35,11 @@ export default function Navbar() {
                     <Link href="/marketplace">
                         <p>User Marketplace</p>
                     </Link>
-                    <Link href="/blog">
-                        <p>Blog</p>
+                    <Link href="/">
+                        <p>Game Portal</p>
+                    </Link>
+                    <Link href="/">
+                        <p>Air Drops</p>
                     </Link>
                 </div>
                 <div>
@@ -59,6 +70,9 @@ export default function Navbar() {
                         </Link>
                         <Link href="/unstaking">
                             <p>UnStaking</p>
+                        </Link>
+                        <Link href="/">
+                            <p>Liquidity Pool</p>
                         </Link>
                         <button
                             onClick={disconnectWallet}
